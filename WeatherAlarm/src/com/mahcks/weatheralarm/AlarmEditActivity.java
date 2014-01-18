@@ -62,10 +62,8 @@ public class AlarmEditActivity extends Activity {
         getActionBar().setDisplayShowTitleEnabled(false);
         
         ((EditText) findViewById(R.id.autoCompleteTextView1)).setText(alarm.name);
-        if (!alarm.time.equals("default")) {
-        	((TimePicker) findViewById(R.id.timePicker)).setCurrentHour(Integer.valueOf(alarm.time.substring(0, 2)));
-        	((TimePicker) findViewById(R.id.timePicker)).setCurrentMinute(Integer.valueOf(alarm.time.substring(3)));
-        }
+        ((TimePicker) findViewById(R.id.timePicker)).setCurrentHour(Integer.valueOf(alarm.time.substring(0, 2)));
+        ((TimePicker) findViewById(R.id.timePicker)).setCurrentMinute(Integer.valueOf(alarm.time.substring(3)));
         
         /*DATE BUTTONS*/
         ToggleButton toggleDayS = (ToggleButton) findViewById(R.id.toggleButton1);
