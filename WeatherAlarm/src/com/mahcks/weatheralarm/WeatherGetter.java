@@ -20,8 +20,12 @@ public class WeatherGetter {
 			  
 			  JSONObject data = new JSONObject(readStream(con.getInputStream()));
 			  
+			  if(data==null)return null;
+			  if(data.has("current_observation")){
+				  return new WeatherData((JSONObject)data.get("current_observation"));
+			  }
 			  
-			  return new WeatherData((JSONObject)data.get("current_observation"));
+			  
 
 			  
 			  } catch (Exception e) {
