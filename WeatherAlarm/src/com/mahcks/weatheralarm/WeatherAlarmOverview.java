@@ -23,7 +23,7 @@ public class WeatherAlarmOverview extends ListActivity
 	implements LoaderManager.LoaderCallbacks<Cursor> {
 	
 	// private Cursor cursor;
-	private SimpleCursorAdapter adapter;
+	private AlarmAdapter mAdapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,11 @@ public class WeatherAlarmOverview extends ListActivity
 
 	@Override
 	public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-		String[] projection = { AlarmTable.COLUMN_ID, AlarmTable.COLUMN_TIME };
+		String[] projection = { AlarmTable.COLUMN_ID, AlarmTable.COLUMN_NAME, 
+								AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
+								AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
+								AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
+								AlarmTable.COLUMN_IS_ON};
 	    CursorLoader cursorLoader = new CursorLoader(this,
 	        MyAlarmContentProvider.CONTENT_URI, projection, null, null, null);
 	    return cursorLoader;
@@ -44,14 +48,14 @@ public class WeatherAlarmOverview extends ListActivity
 
 	@Override
 	public void onLoadFinished(Loader<Cursor> arg0, Cursor data) {
-		adapter.swapCursor(data);
+		mAdapter.swapCursor(data);
 		
 	}
 
 	@Override
 	public void onLoaderReset(Loader<Cursor> arg0) {
 		// data is not available anymore, delete reference
-	    adapter.swapCursor(null);
+	    mAdapter.swapCursor(null);
 	}
 	
 	@Override
@@ -90,17 +94,10 @@ public class WeatherAlarmOverview extends ListActivity
 	
 	private void fillData() {
 
-	    // Fields from the database (projection)
-	    // Must include the _id column for the adapter to work
-	    String[] from = new String[] { AlarmTable.COLUMN_TIME };
-	    // Fields on the UI to which we map
-	    int[] to = new int[] { R.id.label };
-
 	    getLoaderManager().initLoader(0, null, this);
-	    adapter = new SimpleCursorAdapter(this, R.layout.alarm_row, null, from,
-	        to, 0);
+	    mAdapter = new AlarmAdapter(this, null, 0);
 
-	    setListAdapter(adapter);
+	    setListAdapter(mAdapter);
 	 }
 
 }

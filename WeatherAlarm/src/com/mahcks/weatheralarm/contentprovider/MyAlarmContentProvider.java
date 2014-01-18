@@ -174,7 +174,8 @@ public class MyAlarmContentProvider extends ContentProvider {
   private void checkColumns(String[] projection) {
     String[] available = { AlarmTable.COLUMN_NAME, AlarmTable.COLUMN_TIME,
         AlarmTable.COLUMN_DAYS, AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
-        AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME, AlarmTable.COLUMN_ID };
+        AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME, AlarmTable.COLUMN_IS_ON,
+        AlarmTable.COLUMN_ID };
     if (projection != null) {
       HashSet<String> requestedColumns = new HashSet<String>(Arrays.asList(projection));
       HashSet<String> availableColumns = new HashSet<String>(Arrays.asList(available));
