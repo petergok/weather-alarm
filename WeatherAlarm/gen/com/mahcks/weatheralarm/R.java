@@ -50,7 +50,6 @@ public final class R {
         public static final int daysT=0x7f0a0015;
         public static final int daysTh=0x7f0a0017;
         public static final int daysW=0x7f0a0016;
-        public static final int label=0x7f0a001a;
         public static final int name=0x7f0a0012;
         public static final int switchCrescendo=0x7f0a000d;
         public static final int switchSmart=0x7f0a0011;
@@ -59,6 +58,7 @@ public final class R {
         public static final int textViewSmart=0x7f0a0010;
         public static final int textViewSnooze=0x7f0a000a;
         public static final int textViewVolume=0x7f0a000e;
+        public static final int time=0x7f0a001a;
         public static final int timePicker=0x7f0a0001;
         public static final int toggleButton1=0x7f0a0003;
         public static final int toggleButton2=0x7f0a0004;

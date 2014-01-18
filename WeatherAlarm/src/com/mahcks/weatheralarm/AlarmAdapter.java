@@ -53,7 +53,7 @@ public class AlarmAdapter extends CursorAdapter {
          * Next set the title of the entry.
          */
 
-        TextView nameField = (TextView) v.findViewById(R.id.label);
+        TextView nameField = (TextView) v.findViewById(R.id.name);
         if (nameField != null) {
             nameField.setText(name);
         }

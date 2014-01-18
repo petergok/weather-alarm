@@ -12,7 +12,7 @@ public class Alarm {
 	
 	public Alarm(){
 		name="";
-		time="default";
+		time="00:00";
 		days="fffffff";
 		isSmart=1;
 		isCres=1;
