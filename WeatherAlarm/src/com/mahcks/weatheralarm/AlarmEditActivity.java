@@ -13,9 +13,11 @@ import android.view.MenuItem;
 import android.os.StrictMode;
 import android.view.MenuInflater;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TimePicker;
 import android.widget.ToggleButton;
 /*
  * Main activity
@@ -23,11 +25,8 @@ import android.widget.ToggleButton;
 public class AlarmEditActivity extends Activity {
 	
 	public Alarm alarm;
-<<<<<<< HEAD
 	public boolean saveAlarm;
-=======
 	public Uri alarmUri;
->>>>>>> Master - added the edit alarm feature
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +39,8 @@ public class AlarmEditActivity extends Activity {
     	
     	WeatherGetter.getWeather();
     	
-<<<<<<< HEAD
         super.onCreate(savedInstanceState);
         saveAlarm = true;
-=======
     	alarm = new Alarm();
     	
     	Bundle extras = getIntent().getExtras();
@@ -60,9 +57,14 @@ public class AlarmEditActivity extends Activity {
           fillData(alarmUri);
         }
     	
->>>>>>> Master - added the edit alarm feature
         setContentView(R.layout.activity_main);
         getActionBar().setDisplayShowTitleEnabled(false);
+        
+        ((EditText) findViewById(R.id.autoCompleteTextView1)).setText(alarm.name);
+        if (!alarm.time.equals("default")) {
+        	((TimePicker) findViewById(R.id.timePicker)).setCurrentHour(Integer.valueOf(alarm.time.substring(0, 2)));
+        	((TimePicker) findViewById(R.id.timePicker)).setCurrentMinute(Integer.valueOf(alarm.time.substring(3, 5)));
+        }
         
         /*DATE BUTTONS*/
         ToggleButton toggleDayS = (ToggleButton) findViewById(R.id.toggleButton1);
@@ -148,21 +150,6 @@ public class AlarmEditActivity extends Activity {
             }
         });
         toggleDaySa.setChecked(alarm.days.charAt(6) == 't');
-        
-        /*ALARM FEATURES TOGGLE*/
-<<<<<<< HEAD
-=======
-        Switch toggleAlarm = (Switch) findViewById(R.id.switchAlarm);
-        toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                	alarm.isOn=1;
-                } else {
-                	alarm.isOn=0;
-                }
-            }
-        });
->>>>>>> Master - added the edit alarm feature
         
         Switch toggleSnooze = (Switch) findViewById(R.id.switchSnooze);
         toggleSnooze.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -268,28 +255,38 @@ public class AlarmEditActivity extends Activity {
     }
     
     @Override
-<<<<<<< HEAD
     public boolean onOptionsItemSelected (MenuItem item) {
 		switch (item.getItemId()) {
     	case R.id.action_save:
-    		alarm.isOn=true;
-    		return true;
+    		alarm.isOn=1;
+    		saveAlarm = true;
+    		this.finish();
+    		return false;
     	case R.id.action_cancel:
 	    	saveAlarm=false;
-	    	return true;
+	    	this.finish();
+	    	return false;
     	default:
     		return super.onOptionsItemSelected(item);
     	}
     }
-=======
+
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         saveAlarm();
         outState.putParcelable(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
       }
->>>>>>> Master - added the edit alarm feature
+    
+    @Override
+    public void onBackPressed(){
+    	saveAlarm = false;
+    	super.onBackPressed();
+    }
     
     private void saveAlarm() {
+    	alarm.name = ((EditText) findViewById(R.id.autoCompleteTextView1)).getText().toString();
+    	alarm.time = ((TimePicker) findViewById(R.id.timePicker)).getCurrentHour().toString() + ":"
+    				+ ((TimePicker) findViewById(R.id.timePicker)).getCurrentMinute().toString();
 
 	    ContentValues values = new ContentValues();
 	    values.put(AlarmTable.COLUMN_NAME, alarm.name);
@@ -300,8 +297,6 @@ public class AlarmEditActivity extends Activity {
 	    values.put(AlarmTable.COLUMN_IS_SNOOZE, alarm.isSnooze);
 	    values.put(AlarmTable.COLUMN_VOLUME, alarm.volume);
 	    values.put(AlarmTable.COLUMN_IS_ON, alarm.isOn);
-
-	    getContentResolver().insert(MyAlarmContentProvider.CONTENT_URI, values);
 	    
 	    if (alarmUri == null) {
 	        // New todo

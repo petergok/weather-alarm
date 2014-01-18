@@ -11,9 +11,9 @@ public class Alarm {
 	public int isOn;
 	
 	public Alarm(){
-		name="Alarm";
-		time="00:00";
-		days="mtwtfss";
+		name="";
+		time="default";
+		days="fffffff";
 		isSmart=1;
 		isCres=1;
 		isSnooze=1;
