@@ -54,8 +54,40 @@ public class AlarmAdapter extends CursorAdapter {
          */
 
         TextView nameField = (TextView) v.findViewById(R.id.name);
-        if (nameField != null) {
+        if (nameField != null)
             nameField.setText(name);
-        }
+        
+        TextView timeField = (TextView) v.findViewById(R.id.time);
+        if (timeField != null)
+        	timeField.setText(time);
+        
+        /*DAYS*/
+        TextView day = (TextView) v.findViewById(R.id.daysS);
+        if (days.charAt(0) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysM);
+        if (days.charAt(1) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysT);
+        if (days.charAt(2) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysW);
+        if (days.charAt(3) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysTh);
+        if (days.charAt(4) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysF);
+        if (days.charAt(5) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
+        
+        day = (TextView) v.findViewById(R.id.daysS);
+        if (days.charAt(6) == 't')
+        	day.setTextColor(v.getResources().getColor(R.color.green));
     }
 }
