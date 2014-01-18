@@ -107,7 +107,8 @@
                 android:layout_marginLeft="30dp"
                 android:text="Snooze"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/white"/>
             
             <Switch
                 android:id="@+id/switchSnooze"
@@ -127,7 +128,8 @@
                 android:layout_marginLeft="30dp"
                 android:text="Crescendo"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/white"/>
             
             <Switch
                 android:id="@+id/switchCrescendo"
@@ -147,7 +149,8 @@
                 android:layout_marginLeft="30dp"
                 android:text="Volume"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/white"/>
 
             <SeekBar
                 android:id="@+id/volumeBar"
@@ -169,7 +172,8 @@
                 android:layout_marginLeft="30dp"
                 android:text="Smart Alarm"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="10dp"/>
+                android:padding="10dp"
+                android:textColor="@color/white"/>
 
             <Switch
                 android:id="@+id/switchSmart"
