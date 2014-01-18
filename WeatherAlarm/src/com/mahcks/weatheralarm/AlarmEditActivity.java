@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.os.StrictMode;
 import android.view.MenuInflater;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.ToggleButton;
@@ -19,6 +21,7 @@ import android.widget.ToggleButton;
 public class AlarmEditActivity extends Activity {
 	
 	public Alarm alarm;
+	public boolean saveAlarm;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class AlarmEditActivity extends Activity {
     	System.out.println("hello world");
     	
         super.onCreate(savedInstanceState);
+        saveAlarm = true;
         setContentView(R.layout.activity_main);
         alarm = new Alarm();
         getActionBar().setDisplayShowTitleEnabled(false);
@@ -114,16 +118,6 @@ public class AlarmEditActivity extends Activity {
         });
         
         /*ALARM FEATURES TOGGLE*/
-        Switch toggleAlarm = (Switch) findViewById(R.id.switchAlarm);
-        toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                	alarm.isOn=true;
-                } else {
-                	alarm.isOn=false;
-                }
-            }
-        });
         
         Switch toggleSnooze = (Switch) findViewById(R.id.switchSnooze);
         toggleSnooze.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -186,7 +180,8 @@ public class AlarmEditActivity extends Activity {
     
     @Override
     public void onPause() {
-    	saveAlarm();
+    	if (saveAlarm)
+    		saveAlarm();
     	super.onPause();
     }
     
@@ -196,6 +191,20 @@ public class AlarmEditActivity extends Activity {
         //comment
     	getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+		switch (item.getItemId()) {
+    	case R.id.action_save:
+    		alarm.isOn=true;
+    		return true;
+    	case R.id.action_cancel:
+	    	saveAlarm=false;
+	    	return true;
+    	default:
+    		return super.onOptionsItemSelected(item);
+    	}
     }
     
     private void saveAlarm() {

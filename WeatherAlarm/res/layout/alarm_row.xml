@@ -1,27 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
-
-    <ImageView
-        android:id="@+id/icon"
-        android:layout_width="30dp"
-        android:layout_height="24dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:src="@android:drawable/ic_lock_idle_alarm" >
-    </ImageView>
+    android:layout_height="wrap_content"
+    android:background="#000000">
 
     <TextView
-        android:id="@+id/label"
-        android:layout_width="match_parent"
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:text="Alarm Name"
+        android:textSize="16dp" />
+    
+    <TextView
+        android:id="@+id/days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/name"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:text="SMTWTFS"
+        android:textSize="16dp" />
+    
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:lines="1"
-        android:text="@+id/TextView01"
-        android:textSize="24dp" 
-        >
+        android:text="00:00"
+        android:textSize="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
     </TextView>
 
-</LinearLayout> 
+    <ImageView
+        android:id="@+id/iconWeather"
+        android:layout_width="30dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@android:drawable/ic_lock_idle_alarm" />
+
+</RelativeLayout>

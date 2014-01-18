@@ -100,25 +100,6 @@
         <TableRow
             android:layout_width="match_parent"
         	android:layout_height="40dp">
-            <TextView
-                android:id="@+id/textViewAlarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="Alarm"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:padding="10dp"/>
-
-            <Switch
-                android:id="@+id/switchAlarm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp" />
-
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-        	android:layout_height="40dp">
 
             <TextView
                 android:id="@+id/textViewSnooze"
