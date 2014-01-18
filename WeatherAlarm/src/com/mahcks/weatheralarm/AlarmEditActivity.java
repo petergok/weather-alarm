@@ -19,6 +19,7 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
+
 /*
  * Main activity
  */
