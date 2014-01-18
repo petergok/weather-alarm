@@ -17,6 +17,8 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
-    <color name="gray">#eaeaea</color>
-    <color name="white">#ffffff</color>
+    <color name="gray">#EAEAEA</color>
+    <color name="grayDarker">#7D7D7D</color>
+    <color name="green">#4DFF52</color>
+    <color name="white">#FFFFFF</color>
 </resources>

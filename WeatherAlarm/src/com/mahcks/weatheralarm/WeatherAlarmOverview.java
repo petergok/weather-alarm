@@ -32,6 +32,8 @@ public class WeatherAlarmOverview extends ListActivity
 	    this.getListView().setDividerHeight(2);
 	    fillData();
 	    registerForContextMenu(getListView());
+	    
+	    getActionBar().setDisplayShowTitleEnabled(false);
 	}
 
 	@Override

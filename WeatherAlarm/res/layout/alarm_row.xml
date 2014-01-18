@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#000000">
+    android:background="@drawable/alarm_list_background">
 
     <TextView
         android:id="@+id/name"
@@ -13,35 +13,103 @@
         android:layout_alignParentLeft="true"
         android:gravity="center_vertical"
         android:layout_marginLeft="20dp"
-        android:text="Alarm Name"
-        android:textSize="16dp" />
-    
+        android:text="Alarm"
+        android:textSize="24dp"
+        android:textColor="@color/grayDarker" />
+    <!-- DAYS OF THE WEEK -->
     <TextView
-        android:id="@+id/days"
+        android:id="@+id/daysS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/name"
         android:gravity="center_vertical"
         android:layout_marginLeft="20dp"
-        android:text="SMTWTFS"
-        android:textSize="16dp" />
+        android:text="S"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker"/>
+    <TextView
+        android:id="@+id/daysM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysS"
+        android:gravity="center_vertical"
+        android:text="M"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    <TextView
+        android:id="@+id/daysT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysM"
+        android:gravity="center_vertical"
+        android:text="T"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    <TextView
+        android:id="@+id/daysW"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysT"
+        android:gravity="center_vertical"
+        android:text="W"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    <TextView
+        android:id="@+id/daysTh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysW"
+        android:gravity="center_vertical"
+        android:text="T"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    <TextView
+        android:id="@+id/daysF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysTh"
+        android:gravity="center_vertical"
+        android:text="F"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    <TextView
+        android:id="@+id/daysSa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/daysF"
+        android:gravity="center_vertical"
+        android:text="S"
+        android:textSize="14dp"
+        android:textColor="@color/grayDarker" />
+    
+    
     
     <TextView
         android:id="@+id/label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_toLeftOf="@+id/alarmStatus"
+        
         android:lines="1"
         android:text="00:00"
         android:textSize="24dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        
+        android:textColor="@color/grayDarker">
     </TextView>
 
     <ImageView
-        android:id="@+id/iconWeather"
+        android:id="@+id/alarmStatus"
         android:layout_width="30dp"
         android:layout_height="24dp"
         android:layout_alignParentRight="true"
