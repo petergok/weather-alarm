@@ -1,23 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:padding="0dp"
-    tools:context=".AlarmEditActivity" >
+    android:background="@drawable/background"    
+    tools:context=".AlarmEditActivity">
+<RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
 
 
-    <EditText
-        android:id="@+id/textView1"
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:padding="5dp"
-        android:textColor="@color/gray"
-        android:text="@string/alarm_name"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:text="Alarm Name"
+        android:singleLine="true"
+        android:textColor="@color/white">
+    </AutoCompleteTextView>
     
     <TimePicker
         android:id="@+id/timePicker"
@@ -41,18 +45,13 @@
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:padding="-5dp"
-            android:textOn="M"
-            android:textOff="M" />
+            android:textOn="S"
+            android:textOff="S" />
         <ToggleButton
             android:id="@+id/toggleButton2"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton1"
-            android:layout_alignParentRight="true"
             android:textOn="M"
             android:textOff="M" />
         <ToggleButton
@@ -60,56 +59,44 @@
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton2"
-            android:layout_alignParentTop="true"
-            android:textOn="M"
-            android:textOff="M" />
+            android:textOn="T"
+            android:textOff="T" />
         <ToggleButton
             android:id="@+id/toggleButton4"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton3"
-            android:layout_alignParentTop="true"
-            android:textOn="M"
-            android:textOff="M" />
+            android:textOn="W"
+            android:textOff="W" />
         <ToggleButton
             android:id="@+id/toggleButton5"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton4"
-            android:layout_alignParentTop="true"
-            android:textOn="M"
-            android:textOff="M" />
+            android:textOn="T"
+            android:textOff="T" />
         <ToggleButton
             android:id="@+id/toggleButton6"
             android:layout_width="0dp"
              android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton5"
-            android:layout_alignParentTop="true"
-            android:textOn="M"
-            android:textOff="M" />
+            android:textOn="F"
+            android:textOff="F" />
         <ToggleButton
             android:id="@+id/toggleButton7"
             android:layout_width="0dp"
              android:layout_weight="14"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/toggleButton6"
-            android:layout_alignParentTop="true"
             android:textOn="S"
             android:textOff="S" />
         
     </LinearLayout>
-	<ScrollView
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent"
-	    android:layout_below="@+id/datePicker" >
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/datePicker"
+        android:stretchColumns="0" >
         <TableRow
             android:layout_width="match_parent"
         	android:layout_height="40dp">
@@ -126,7 +113,7 @@
                 android:id="@+id/switchAlarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical" />
+                android:layout_marginRight="20dp" />
 
         </TableRow>
         <TableRow
@@ -146,7 +133,8 @@
                 android:id="@+id/switchSnooze"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"/>
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -165,7 +153,8 @@
                 android:id="@+id/switchCrescendo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"/>
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -181,10 +170,11 @@
                 android:padding="10dp"/>
 
             <SeekBar
-                android:id="@+id/seekBar1"
-                android:layout_width="match_parent"
+                android:id="@+id/volumeBar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"/>
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
             
         </TableRow>
         
@@ -202,12 +192,14 @@
                 android:padding="10dp"/>
 
             <Switch
-                android:id="@+id/switchCrescendo"
+                android:id="@+id/switchSmart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-				android:layout_gravity="center_vertical"/>
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
             
         </TableRow>
     </TableLayout>
-    </ScrollView>
+
 </RelativeLayout>
+</ScrollView>

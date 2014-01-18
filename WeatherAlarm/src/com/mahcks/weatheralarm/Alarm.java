@@ -8,6 +8,7 @@ public class Alarm {
 	public boolean isCres;
 	public boolean isSnooze;
 	public int volume;
+	public boolean isOn;
 	
 	public Alarm(){
 		name="Alarm";
@@ -17,5 +18,6 @@ public class Alarm {
 		isCres=true;
 		isSnooze=true;
 		volume=5;	
+		isOn=true;
 	}
 }
