@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.view.Menu;
 
 /*
- * Comment
+ * Main activity
  */
 public class MainActivity extends Activity {
 
