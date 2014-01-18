@@ -103,15 +103,34 @@ public final class R {
     }
     public static final class drawable {
         public static final int background=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int check_icon=0x7f020001;
+        public static final int ic_action_cancel=0x7f020002;
+        public static final int ic_action_save=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int x_icon=0x7f020005;
     }
     public static final class id {
-        public static final int action_settings=0x7f090005;
-        public static final int switch1=0x7f090003;
-        public static final int textView1=0x7f090001;
-        public static final int textView2=0x7f090002;
-        public static final int textView3=0x7f090004;
-        public static final int timePicker1=0x7f090000;
+        public static final int action_cancel=0x7f090014;
+        public static final int action_save=0x7f090013;
+        public static final int datePicker=0x7f090002;
+        public static final int seekBar1=0x7f090011;
+        public static final int switchAlarm=0x7f09000b;
+        public static final int switchCrescendo=0x7f09000f;
+        public static final int switchSnooze=0x7f09000d;
+        public static final int textView1=0x7f090000;
+        public static final int textViewAlarm=0x7f09000a;
+        public static final int textViewCrescendo=0x7f09000e;
+        public static final int textViewSmart=0x7f090012;
+        public static final int textViewSnooze=0x7f09000c;
+        public static final int textViewVolume=0x7f090010;
+        public static final int timePicker=0x7f090001;
+        public static final int toggleButton1=0x7f090003;
+        public static final int toggleButton2=0x7f090004;
+        public static final int toggleButton3=0x7f090005;
+        public static final int toggleButton4=0x7f090006;
+        public static final int toggleButton5=0x7f090007;
+        public static final int toggleButton6=0x7f090008;
+        public static final int toggleButton7=0x7f090009;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -120,7 +139,10 @@ public final class R {
         public static final int main=0x7f080000;
     }
     public static final class string {
+        public static final int action_cancel=0x7f050004;
+        public static final int action_save=0x7f050003;
         public static final int action_settings=0x7f050001;
+        public static final int alarm_name=0x7f050005;
         public static final int app_name=0x7f050000;
         public static final int hello_world=0x7f050002;
     }
