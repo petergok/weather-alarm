@@ -126,7 +126,7 @@ public class AlarmEditActivity extends Activity {
         });
         
         Switch toggleSnooze = (Switch) findViewById(R.id.switchSnooze);
-        toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        toggleSnooze.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                 	alarm.isSnooze=true;
@@ -137,7 +137,7 @@ public class AlarmEditActivity extends Activity {
         });
         
         Switch toggleCres = (Switch) findViewById(R.id.switchCrescendo);
-        toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        toggleCres.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                 	alarm.isCres=true;
@@ -148,7 +148,7 @@ public class AlarmEditActivity extends Activity {
         });
         
         Switch toggleSmart = (Switch) findViewById(R.id.switchSmart);
-        toggleAlarm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        toggleSmart.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                 	alarm.isSmart=true;
