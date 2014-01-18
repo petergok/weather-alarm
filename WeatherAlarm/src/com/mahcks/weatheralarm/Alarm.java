@@ -4,20 +4,20 @@ public class Alarm {
 	public String name;
 	public String time;
 	public String days;
-	public boolean isSmart;
-	public boolean isCres;
-	public boolean isSnooze;
+	public int isSmart;
+	public int isCres;
+	public int isSnooze;
 	public int volume;
-	public boolean isOn;
+	public int isOn;
 	
 	public Alarm(){
 		name="Alarm";
 		time="00:00";
 		days="mtwtfss";
-		isSmart=true;
-		isCres=true;
-		isSnooze=true;
+		isSmart=1;
+		isCres=1;
+		isSnooze=1;
 		volume=5;	
-		isOn=true;
+		isOn=1;
 	}
 }
