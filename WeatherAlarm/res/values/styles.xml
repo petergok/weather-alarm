@@ -17,4 +17,7 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <color name="gray">#eaeaea</color>
+    <color name="titlebackgroundcolor">#00abd7</color>
+    <color name="titlecolor">#666666</color>
 </resources>
