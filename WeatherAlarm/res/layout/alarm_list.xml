@@ -15,6 +15,6 @@
         android:id="@android:id/empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currently There Are No Alarms" />
+        android:text="Click the add icon to create a new alarm" />
 
 </LinearLayout>
