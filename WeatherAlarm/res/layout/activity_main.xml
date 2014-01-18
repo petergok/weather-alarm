@@ -18,11 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:ems="10"
-<<<<<<< HEAD
         android:hint="Alarm Name"
-=======
-        android:H="Alarm Name"
->>>>>>> master -customized alarm row design
         android:singleLine="true"
         android:textColor="@color/white">
     </AutoCompleteTextView>
