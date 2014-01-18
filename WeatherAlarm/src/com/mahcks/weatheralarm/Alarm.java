@@ -1,13 +1,13 @@
 package com.mahcks.weatheralarm;
 
 public class Alarm {
-	private String name;
-	private String time;
-	private String days;
-	private boolean isSmart;
-	private boolean isCres;
-	private boolean isSnooze;
-	private int volume;
+	public String name;
+	public String time;
+	public String days;
+	public boolean isSmart;
+	public boolean isCres;
+	public boolean isSnooze;
+	public int volume;
 	
 	public Alarm(){
 		name="Alarm";

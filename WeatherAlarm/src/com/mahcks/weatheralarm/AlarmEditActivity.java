@@ -1,18 +1,20 @@
 package com.mahcks.weatheralarm;
 
+import com.mahcks.weatheralarm.contentprovider.MyAlarmContentProvider;
+import com.mahcks.weatheralarm.database.AlarmTable;
+
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.ContentValues;
 import android.view.Menu;
-<<<<<<< HEAD:WeatherAlarm/src/com/mahcks/weatheralarm/MainActivity.java
 import android.os.StrictMode;
-=======
 import android.view.MenuInflater;
->>>>>>> master -added all the shits:WeatherAlarm/src/com/mahcks/weatheralarm/AlarmEditActivity.java
-
 /*
  * Main activity
  */
 public class AlarmEditActivity extends Activity {
+	
+	public Alarm alarm;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,22 +28,35 @@ public class AlarmEditActivity extends Activity {
     	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Alarm alarm = new Alarm();
+        alarm = new Alarm();
     }
     
+    @Override
+    public void onPause() {
+    	saveAlarm();
+    	super.onPause();
+    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-<<<<<<< HEAD:WeatherAlarm/src/com/mahcks/weatheralarm/MainActivity.java
         //comment
     	getMenuInflater().inflate(R.menu.main, menu);
         return true;
-=======
-    	MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
->>>>>>> master -added all the shits:WeatherAlarm/src/com/mahcks/weatheralarm/AlarmEditActivity.java
     }
+    
+    private void saveAlarm() {
+
+	    ContentValues values = new ContentValues();
+	    values.put(AlarmTable.COLUMN_NAME, alarm.name);
+	    values.put(AlarmTable.COLUMN_TIME, alarm.time);
+	    values.put(AlarmTable.COLUMN_DAYS, alarm.days);
+	    values.put(AlarmTable.COLUMN_IS_SMART, alarm.isSmart);
+	    values.put(AlarmTable.COLUMN_IS_CRES, alarm.isCres);
+	    values.put(AlarmTable.COLUMN_IS_SNOOZE, alarm.isSnooze);
+	    values.put(AlarmTable.COLUMN_VOLUME, alarm.volume);
+
+	    getContentResolver().insert(MyAlarmContentProvider.CONTENT_URI, values);
+	}
     
 }

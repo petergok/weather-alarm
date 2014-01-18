@@ -12,8 +12,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -103,20 +101,6 @@ public class WeatherAlarmOverview extends ListActivity
 	        to, 0);
 
 	    setListAdapter(adapter);
-	  }
-	
-	private void loadAlarm(Alarm alarm) {
-
-	    ContentValues values = new ContentValues();
-	    values.put(AlarmTable.COLUMN_NAME, Alarm.name);
-	    values.put(AlarmTable.COLUMN_TIME, Alarm.time);
-	    values.put(AlarmTable.COLUMN_DAYS, Alarm.days);
-	    values.put(AlarmTable.COLUMN_IS_SMART, Alarm.isSmart);
-	    values.put(AlarmTable.COLUMN_IS_CRES, Alarm.isCres);
-	    values.put(AlarmTable.COLUMN_IS_SNOOZE, Alarm.isSnooze);
-	    values.put(AlarmTable.COLUMN_VOLUME, Alarm.volume);
-
-	    getContentResolver().insert(MyAlarmContentProvider.CONTENT_URI, values);
-	}
+	 }
 
 }
