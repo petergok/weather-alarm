@@ -35,6 +35,14 @@ public class WeatherGetter {
 			return null;
 	}
 	
+	static public int toRes(String type){
+		if(type=="cloudy")return R.raw.cloudy;
+		if(type=="clear")return R.raw.clear;
+		if(type=="rain")return R.raw.rain;
+		if(type=="tstorm")return R.raw.tstorm;
+		if(type=="snow")return R.raw.snow;
+		return 0;
+	}
 	
 	static private String readStream(InputStream in) {
 		  BufferedReader reader = null;
