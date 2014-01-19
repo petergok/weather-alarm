@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AlarmAdapter extends CursorAdapter {
@@ -65,29 +66,44 @@ public class AlarmAdapter extends CursorAdapter {
         TextView day = (TextView) v.findViewById(R.id.daysS);
         if (days.charAt(0) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
         day = (TextView) v.findViewById(R.id.daysM);
         if (days.charAt(1) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
         day = (TextView) v.findViewById(R.id.daysT);
         if (days.charAt(2) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
         day = (TextView) v.findViewById(R.id.daysW);
         if (days.charAt(3) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
         day = (TextView) v.findViewById(R.id.daysTh);
         if (days.charAt(4) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
         day = (TextView) v.findViewById(R.id.daysF);
         if (days.charAt(5) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
         
-        day = (TextView) v.findViewById(R.id.daysS);
+        day = (TextView) v.findViewById(R.id.daysSa);
         if (days.charAt(6) == 't')
         	day.setTextColor(v.getResources().getColor(R.color.green));
+        else
+        	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
+        
     }
 }
