@@ -12,6 +12,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,6 +33,13 @@ public class WeatherAlarmOverview extends ListActivity
 	    this.getListView().setDividerHeight(2);
 	    fillData();
 	    registerForContextMenu(getListView());
+	    
+	    StrictMode.ThreadPolicy policy = new StrictMode.
+	    		ThreadPolicy.Builder().permitAll().build();
+	    		StrictMode.setThreadPolicy(policy); 
+	    
+	    WeatherData wd = WeatherGetter.getWeather();
+	    WeatherSound.playSound(this,wd.type,true);
 	    
 	    getActionBar().setDisplayShowTitleEnabled(false);
 	}
