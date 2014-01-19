@@ -21,15 +21,11 @@ import android.widget.ToggleButton;
 public class AlarmAdapter extends CursorAdapter {
     private LayoutInflater mLayoutInflater;
     private Context mContext;
-    private WeatherAlarmOverview mActivity;
-    private AlarmAdapter mAdapter;
     
-    public AlarmAdapter(Context context, Cursor c, int flags, WeatherAlarmOverview activity) {
+    public AlarmAdapter(Context context, Cursor c, int flags) {
         super(context, c, flags);
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
-        mActivity = activity;
-        mAdapter = this;
     }
 
     @Override

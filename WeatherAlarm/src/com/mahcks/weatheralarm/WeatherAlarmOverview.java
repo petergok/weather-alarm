@@ -39,9 +39,62 @@ public class WeatherAlarmOverview extends ListActivity
 	
 	// private Cursor cursor;
 	private AlarmAdapter mAdapter;
-	private ArrayList<Long> checkedItems = new ArrayList<Long>();
-	private ArrayList<Integer> checkedItemsPos = new ArrayList<Integer>();
+	private View checkedItem;
+	private int checkedItemPos;
+	private long checkedItemId;
 	private boolean createdAction = false;
+	private ActionMode mActionMode;
+	
+	private ActionMode.Callback mActionModeCallback = new ActionMode.Callback() {
+
+	    // Called when the action mode is created; startActionMode() was called
+	    @Override
+	    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+	        // Inflate a menu resource providing context menu items
+	        MenuInflater inflater = mode.getMenuInflater();
+	        inflater.inflate(R.menu.context_menu_alarms, menu);
+	        return true;
+	    }
+
+	    // Called each time the action mode is shown. Always called after onCreateActionMode, but
+	    // may be called multiple times if the mode is invalidated.
+	    @Override
+	    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+	        return false; // Return false if nothing is done
+	    }
+
+	    // Called when the user selects a contextual menu item
+	    @Override
+	    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+	        switch (item.getItemId()) {
+	            case R.id.delete_alarm:
+	            	deleteSelectedItem();
+	                mode.finish(); // Action picked, so close the CAB
+	                return true;
+	            case R.id.edit_alarm:
+	                Intent i = new Intent(mActivity, AlarmEditActivity.class);
+	        	    Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + checkedItemId);
+	        	    i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
+	        	    
+	        	    startActivity(i);
+	        	    mode.finish();
+	        	    return true;
+	            default:
+	                return false;
+	        }
+	    }
+
+	    // Called when the user exits the action mode
+	    @SuppressLint("NewApi")
+		@Override
+	    public void onDestroyActionMode(ActionMode mode) {
+	        mActionMode = null;
+	        createdAction = false;
+	        for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
+				mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
+			}
+	    }
+	};
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -51,7 +104,28 @@ public class WeatherAlarmOverview extends ListActivity
 		
 	    setContentView(R.layout.alarm_list);
 	    
-	    getActionBar().setTitle("Create alarm"); 
+	    getActionBar().setTitle("Create alarm");
+	    
+	    this.getListView().setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if (mActionMode != null) {
+	                return false;
+	            }
+
+	            // Start the CAB using the ActionMode.Callback defined above
+	            mActionMode = mActivity.startActionMode(mActionModeCallback);
+	            view.setSelected(true);
+	            checkedItemId = id;
+	            createdAction = true;
+	            checkedItem = view;
+	            
+	            view.setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
+	            return true;
+			}
+	    });
 	    
 	    this.getListView().setDividerHeight(2);
 	    
@@ -60,14 +134,14 @@ public class WeatherAlarmOverview extends ListActivity
 			@SuppressLint("NewApi")
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if (event.getActionMasked() == MotionEvent.ACTION_DOWN && mActivity.getListView().getChildCount() > 0) {
+				if (!createdAction && event.getActionMasked() == MotionEvent.ACTION_DOWN && mActivity.getListView().getChildCount() > 0) {
 					float x = event.getX();
 					float y = event.getY() + 120;
 					for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
 						Rect r = new Rect();
 						mActivity.getListView().getChildAt(child).getGlobalVisibleRect(r);
 						if (r.contains((int)x, (int)y))
-								mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
+								mActivity.getListView().getChildAt(Math.min(child, mActivity.getListView().getChildCount())).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
 					}
 				}
 				else if (!createdAction) {
@@ -80,86 +154,6 @@ public class WeatherAlarmOverview extends ListActivity
 	    	
 	    });
 	    
-	    this.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
-	    this.getListView().setMultiChoiceModeListener(new MultiChoiceModeListener() {
-
-	        @SuppressLint("NewApi")
-			@Override
-	        public void onItemCheckedStateChanged(ActionMode mode, int position,
-	                                              long id, boolean checked) {
-	        	if (checked) {
-	        		checkedItems.add(id);
-	        		checkedItemsPos.add(position);
-	        		mActivity.getListView().getChildAt(position - mActivity.getListView().getFirstVisiblePosition()).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
-	        	}
-	        	else {
-	        		checkedItems.remove(id);
-	        		checkedItemsPos.remove(position);
-	        		mActivity.getListView().getChildAt(position - mActivity.getListView().getFirstVisiblePosition()).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));}
-	        	
-	        	if (checkedItems.size() != 1)
-	        		mActivity.findViewById(R.id.edit_alarm).setVisibility(View.GONE);
-	        	else
-	        		mActivity.findViewById(R.id.edit_alarm).setVisibility(View.VISIBLE);
-	        }
-
-	        @Override
-	        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-	            // Respond to clicks on the actions in the CAB
-	        	int id = item.getItemId();
-	            switch (id) {
-	                case R.id.delete_alarm:
-	                    deleteSelectedItems();
-	                    mode.finish(); // Action picked, so close the CAB
-	                    return true;
-	                case R.id.edit_alarm:
-	                	Intent i = new Intent(mActivity, AlarmEditActivity.class);
-		        	    Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + checkedItems.get(0));
-		        	    i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
-		        	    checkedItems.clear();
-		        	    checkedItemsPos.clear();
-		        	    createdAction = false;
-		        	    for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
-							mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
-						}
-
-		        	    startActivity(i);
-		        	    
-	                    mode.finish(); // Action picked, so close the CAB
-	                    return true;
-	                default:
-	                    return false;
-	            }
-	        }
-
-	        @Override
-	        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-	            // Inflate the menu for the CAB
-	        	createdAction = true;
-	            MenuInflater inflater = mode.getMenuInflater();
-	            inflater.inflate(R.menu.context_menu_alarms, menu);
-	            return true;
-	        }
-
-	        @SuppressLint("NewApi")
-			@Override
-	        public void onDestroyActionMode(ActionMode mode) {
-	        	for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
-					mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
-				}
-	            checkedItemsPos.clear();
-	            checkedItems.clear();
-	            createdAction = false;
-	        }
-
-	        @Override
-	        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-	            // Here you can perform updates to the CAB due to
-	            // an invalidate() request
-	            return false;
-	        }
-	    });
-	    
 	    fillData();
 	    registerForContextMenu(getListView());
 	    
@@ -168,31 +162,9 @@ public class WeatherAlarmOverview extends ListActivity
 	    		StrictMode.setThreadPolicy(policy); 
 	}
 	
-	public void deleteSelectedItems() {
-		
-		String[] projection = { AlarmTable.COLUMN_ID, AlarmTable.COLUMN_NAME, 
-				AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
-				AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
-				AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
-				AlarmTable.COLUMN_IS_ON};
-		
-		for (Long id : checkedItems) {
-			Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + id);
-			
-			Cursor c = getContentResolver().query(alarmUri, projection, null, null,
-		            null);
-			if(c!=null){
-				c.moveToFirst();
-				AlarmScheduler.removeAlarm(this,c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID)));
-				c.close();
-			}
-			
-			getContentResolver().delete(alarmUri, AlarmTable.COLUMN_ID + "=?", new String[]{String.valueOf(id)});
-			
-	        
-		}
-		checkedItems.clear();
-		checkedItemsPos.clear();
+	public void deleteSelectedItem() {
+		Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + checkedItemId);
+		getContentResolver().delete(alarmUri, AlarmTable.COLUMN_ID + "=?", new String[]{String.valueOf(checkedItemId)});
 	}
 
 	@Override
@@ -245,20 +217,25 @@ public class WeatherAlarmOverview extends ListActivity
 	  @SuppressLint("NewApi")
 	@Override
 	  protected void onListItemClick(ListView l, View v, int position, long id) {
-	    super.onListItemClick(l, v, position, id);
-		v.setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
-	    Intent i = new Intent(this, AlarmEditActivity.class);
-	    Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + id);
-	    i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
-	    createdAction = false;
+		if (mActionMode == null) {
+			super.onListItemClick(l, v, position, id);
+			v.setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
+			Intent i = new Intent(this, AlarmEditActivity.class);
+			Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + id);
+			i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
+			createdAction = false;
 
-	    startActivity(i);
+			startActivity(i);
+		} else if (checkedItem.equals(v)){
+			checkedItem.setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
+			mActionMode.finish();
+		}
 	  }
 	
 	private void fillData() {
 
 	    getLoaderManager().initLoader(0, null, this);
-	    mAdapter = new AlarmAdapter(this, null, 0, this);
+	    mAdapter = new AlarmAdapter(this, null, 0);
 
 	    setListAdapter(mAdapter);
 	 }
