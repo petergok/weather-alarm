@@ -23,12 +23,14 @@ public class AlarmScheduler{
 				// Set the alarm to start at 8:30 a.m.
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTimeInMillis(System.currentTimeMillis());
-				calendar.set(Calendar.DAY_OF_WEEK, i);
-				calendar.set(Calendar.HOUR_OF_DAY, hour%12);
+				calendar.set(Calendar.SECOND,0);
+				calendar.set(Calendar.DAY_OF_WEEK, i+1);
+				calendar.set(Calendar.HOUR_OF_DAY, hour);
 				calendar.set(Calendar.MINUTE, min);
-				if(hour<12)calendar.set(Calendar.AM_PM, Calendar.AM);
-				else calendar.set(Calendar.AM_PM,Calendar.PM);
+				
+				System.out.println("Setting alamr: "+i+" "+hour+" "+min+" "+calendar.getTimeInMillis());
 		
+				System.out.println((calendar.getTimeInMillis()-System.currentTimeMillis())/1000.0f);
 				// setRepeating() lets you specify a precise custom interval--in this case,
 				// 20 minutes.
 				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),

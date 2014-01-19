@@ -10,6 +10,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 		
 	    //Intent service = new Intent(context, WordService.class);
 	    //context.startService(service);
+		System.out.println("FUCK YOU");
 		Toast.makeText(context, "ALARM",500).show();
 	  }
 
