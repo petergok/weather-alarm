@@ -64,9 +64,15 @@ public class AlarmScheduler{
 			calendar.set(Calendar.HOUR_OF_DAY, hour);
 			calendar.set(Calendar.MINUTE, min);
 			
+			float time = calendar.getTimeInMillis();
+			
+			if(calendar.getTimeInMillis()-System.currentTimeMillis()<=0){
+				time += 1000 * 60 * 60 * 24 * 7;
+			}
+			
 			PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(),(alarm.id+1)*10,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 			
-			alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) calendar.getTimeInMillis(),
+			alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP,(long) time,
 			        1000 * 60 * 60 * 24 * 7, alarmIntent);
 		}
 		
