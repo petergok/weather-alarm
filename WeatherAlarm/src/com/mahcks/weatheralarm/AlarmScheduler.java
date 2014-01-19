@@ -24,12 +24,14 @@ public class AlarmScheduler{
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(AlarmReceiver.ACTION);
+		intent.putExtra("isCres", alarm.isCres);
 
 		int hour = Integer.valueOf(alarm.time.substring(0,2));
 		int min = Integer.valueOf(alarm.time.substring(3,5));
-		
+		Boolean used = false;
 		for(int i=0;i<7;i++){
 			if(alarm.days.charAt(i)=='t'){
+				used = true;
 				// Set the alarm to start at 8:30 a.m.
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTimeInMillis(System.currentTimeMillis());
@@ -54,6 +56,18 @@ public class AlarmScheduler{
 				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) time,
 				        1000 * 60 * 60 * 24 * 7, alarmIntent);
 			}
+		}
+		if(!used){
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTimeInMillis(System.currentTimeMillis());
+			calendar.set(Calendar.SECOND,0);
+			calendar.set(Calendar.HOUR_OF_DAY, hour);
+			calendar.set(Calendar.MINUTE, min);
+			
+			PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(),(alarm.id+1)*10,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+			
+			alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) calendar.getTimeInMillis(),
+			        1000 * 60 * 60 * 24 * 7, alarmIntent);
 		}
 		
 	}
