@@ -7,16 +7,23 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.os.StrictMode;
 import android.view.MenuInflater;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 import android.widget.TimePicker;
 import android.widget.ToggleButton;
 
@@ -63,7 +70,23 @@ public class AlarmEditActivity extends Activity {
     	
         setContentView(R.layout.activity_main);
         
-        ((EditText) findViewById(R.id.autoCompleteTextView1)).setText(alarm.name);
+        EditText editText = ((EditText) findViewById(R.id.autoCompleteTextView1));
+        editText.setText(alarm.name);
+        editText.setOnEditorActionListener(new OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                	findViewById(R.id.everything).requestFocus();
+                    handled = true;
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+                return handled;
+            }
+
+			
+        });
         ((TimePicker) findViewById(R.id.timePicker)).setCurrentHour(Integer.valueOf(alarm.time.substring(0, 2)));
         ((TimePicker) findViewById(R.id.timePicker)).setCurrentMinute(Integer.valueOf(alarm.time.substring(3)));
         

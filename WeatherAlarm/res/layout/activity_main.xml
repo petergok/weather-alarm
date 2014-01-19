@@ -5,8 +5,11 @@
     android:layout_height="match_parent"   
     tools:context=".AlarmEditActivity">
 <RelativeLayout 
+    android:id = "@+id/everything"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:focusable="true"
+        android:focusableInTouchMode="true"
     android:background="@drawable/background" >
 
 
@@ -22,8 +25,8 @@
         android:hint="Alarm Name"
         android:singleLine="true"
         android:background="@drawable/rounded_edittext"
-        android:focusable="true"
-        android:focusableInTouchMode="true">
+        android:imeOptions = "actionDone"
+>
     </AutoCompleteTextView>
     
     <TimePicker
@@ -40,9 +43,11 @@
         android:id="@+id/datePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        
         android:layout_margin="20dp"
         android:layout_below="@+id/timePicker"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+                >
 
         <ToggleButton
             android:id="@+id/toggleButton1"
