@@ -162,8 +162,7 @@ public class WeatherAlarmOverview extends ListActivity
 	    		ThreadPolicy.Builder().permitAll().build();
 	    		StrictMode.setThreadPolicy(policy); 
 	    
-	    WeatherData wd = WeatherGetter.getWeather();
-	    WeatherSound.playSound(this,wd.type,true);
+	    
 	    
 	    getActionBar().setDisplayShowTitleEnabled(false);
 	}
