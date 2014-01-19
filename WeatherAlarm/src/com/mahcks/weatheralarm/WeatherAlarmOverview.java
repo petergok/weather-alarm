@@ -67,7 +67,7 @@ public class WeatherAlarmOverview extends ListActivity
 						Rect r = new Rect();
 						mActivity.getListView().getChildAt(child).getGlobalVisibleRect(r);
 						if (r.contains((int)x, (int)y))
-								mActivity.getListView().getChildAt(Math.min(child, mActivity.getListView().getChildCount())).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
+								mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
 					}
 				}
 				else if (!createdAction) {
@@ -90,13 +90,12 @@ public class WeatherAlarmOverview extends ListActivity
 	        	if (checked) {
 	        		checkedItems.add(id);
 	        		checkedItemsPos.add(position);
-	        		mActivity.getListView().getChildAt(position).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
+	        		mActivity.getListView().getChildAt(position - mActivity.getListView().getFirstVisiblePosition()).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
 	        	}
 	        	else {
 	        		checkedItems.remove(id);
-	        		checkedItemsPos.add(position);
-	        		mActivity.getListView().getChildAt(position).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
-	        	}
+	        		checkedItemsPos.remove(position);
+	        		mActivity.getListView().getChildAt(position - mActivity.getListView().getFirstVisiblePosition()).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));}
 	        	
 	        	if (checkedItems.size() != 1)
 	        		mActivity.findViewById(R.id.edit_alarm).setVisibility(View.GONE);
