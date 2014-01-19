@@ -1,0 +1,207 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"   
+    tools:context=".AlarmEditActivity">
+<RelativeLayout 
+    android:id = "@+id/everything"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@drawable/background" >
+
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:ems="10"
+        android:hint="Alarm Name"
+        android:singleLine="true"
+        android:background="@drawable/rounded_edittext"
+        android:imeOptions = "actionDone">
+    </AutoCompleteTextView>
+    
+    <TimePicker
+        android:id="@+id/timePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:textColor="@android:color/black"
+        android:background="@drawable/rounded_timepicker" />
+
+    <LinearLayout
+        android:id="@+id/datePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        
+        android:layout_margin="20dp"
+        android:layout_below="@+id/timePicker"
+        android:layout_marginTop="20dp"
+                >
+
+        <ToggleButton
+            android:id="@+id/toggleButton1"
+            android:layout_width="0dp"
+            android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="S"
+            android:textOff="S"
+            android:textColor="@color/white"/>
+        <ToggleButton
+            android:id="@+id/toggleButton2"
+            android:layout_width="0dp"
+            android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="M"
+            android:textOff="M" 
+            android:textColor="@color/white"/>
+        <ToggleButton
+            android:id="@+id/toggleButton3"
+            android:layout_width="0dp"
+            android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="T"
+            android:textOff="T" 
+            android:textColor="@color/white"/>
+        <ToggleButton
+            android:id="@+id/toggleButton4"
+            android:layout_width="0dp"
+            android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="W"
+            android:textOff="W" 
+            android:textColor="@color/white"/>
+        <ToggleButton
+            android:id="@+id/toggleButton5"
+            android:layout_width="0dp"
+            android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="T"
+            android:textOff="T"
+            android:textColor="@color/white" />
+        <ToggleButton
+            android:id="@+id/toggleButton6"
+            android:layout_width="0dp"
+             android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="F"
+            android:textOff="F"
+            android:textColor="@color/white" />
+        <ToggleButton
+            android:id="@+id/toggleButton7"
+            android:layout_width="0dp"
+             android:layout_weight="14"
+            android:layout_height="wrap_content"
+            android:textOn="S"
+            android:textOff="S"
+            android:textColor="@color/white" />
+        
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/datePicker"
+        android:stretchColumns="0" >
+        <TableRow
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textViewSnooze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Snooze"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+            
+            <Switch
+                android:id="@+id/switchSnooze"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textViewCrescendo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Crescendo"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+            
+            <Switch
+                android:id="@+id/switchCrescendo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textViewVolume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Volume"
+                android:layout_weight = "0.7"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+
+            <SeekBar
+                android:id="@+id/volumeBar"
+                android:layout_width="0dp"
+                android:layout_weight = "1"
+                android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp"/>
+            
+        </TableRow>
+        
+        <TableRow
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/textViewSmart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="Smart Alarm"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"/>
+
+            <Switch
+                android:id="@+id/switchSmart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:layout_gravity="center_vertical"
+				android:layout_marginRight="20dp" />
+            
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>
+</ScrollView>

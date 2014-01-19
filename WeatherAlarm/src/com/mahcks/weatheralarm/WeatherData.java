@@ -8,7 +8,7 @@ public class WeatherData {
 	public String type;
 	public double temp_f;
 	
-	public String desc;
+	public String icon;
 	
 	public final String SNOW = "snow";
 	public final String RAIN = "rain";
@@ -21,6 +21,7 @@ public class WeatherData {
 		weather = (String) data.get("weather");
 		type = weatherType((String)data.get("icon"));
 		temp_f = (Double) data.get("temp_f");
+		icon = (String)data.get("icon");
 		
 		System.out.println(weather+" "+type+" "+temp_f);
 	}
