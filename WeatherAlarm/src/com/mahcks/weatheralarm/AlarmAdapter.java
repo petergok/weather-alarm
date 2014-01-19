@@ -1,24 +1,35 @@
 package com.mahcks.weatheralarm;
 
+import com.mahcks.weatheralarm.contentprovider.MyAlarmContentProvider;
 import com.mahcks.weatheralarm.database.AlarmTable;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Rect;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 public class AlarmAdapter extends CursorAdapter {
     private LayoutInflater mLayoutInflater;
     private Context mContext;
+    private WeatherAlarmOverview mActivity;
+    private AlarmAdapter mAdapter;
     
-    public AlarmAdapter(Context context, Cursor c, int flags) {
+    public AlarmAdapter(Context context, Cursor c, int flags, WeatherAlarmOverview activity) {
         super(context, c, flags);
         mContext = context;
-        mLayoutInflater = LayoutInflater.from(context); 
+        mLayoutInflater = LayoutInflater.from(context);
+        mActivity = activity;
+        mAdapter = this;
     }
 
     @Override
@@ -44,10 +55,6 @@ public class AlarmAdapter extends CursorAdapter {
         String name = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_NAME));
         String time = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_TIME));
         String days = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_DAYS));
-        int isSmart = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_SMART));
-        int isCres = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_CRES));
-        int isSnooze = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_SNOOZE));
-        int volume = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_VOLUME));
         int isOn = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_ON));
 
         /**
@@ -104,6 +111,5 @@ public class AlarmAdapter extends CursorAdapter {
         	day.setTextColor(v.getResources().getColor(R.color.green));
         else
         	day.setTextColor(v.getResources().getColor(R.color.grayDarker));
-        
     }
 }

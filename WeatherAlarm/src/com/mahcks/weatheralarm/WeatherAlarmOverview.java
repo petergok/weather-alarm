@@ -119,6 +119,10 @@ public class WeatherAlarmOverview extends ListActivity
 		        	    i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
 		        	    checkedItems.clear();
 		        	    checkedItemsPos.clear();
+		        	    createdAction = false;
+		        	    for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
+							mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
+						}
 
 		        	    startActivity(i);
 		        	    
@@ -141,9 +145,9 @@ public class WeatherAlarmOverview extends ListActivity
 	        @SuppressLint("NewApi")
 			@Override
 	        public void onDestroyActionMode(ActionMode mode) {
-	            for (int position : checkedItemsPos) {
-	            	mActivity.getListView().getChildAt(position).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
-	            }
+	        	for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
+					mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
+				}
 	            checkedItemsPos.clear();
 	            checkedItems.clear();
 	            createdAction = false;
@@ -255,7 +259,7 @@ public class WeatherAlarmOverview extends ListActivity
 	private void fillData() {
 
 	    getLoaderManager().initLoader(0, null, this);
-	    mAdapter = new AlarmAdapter(this, null, 0);
+	    mAdapter = new AlarmAdapter(this, null, 0, this);
 
 	    setListAdapter(mAdapter);
 	 }

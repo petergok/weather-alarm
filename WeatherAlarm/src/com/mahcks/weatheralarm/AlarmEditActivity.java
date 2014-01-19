@@ -342,8 +342,10 @@ public class AlarmEditActivity extends Activity {
 					AlarmTable.COLUMN_IS_ON};
 	        Cursor c = getContentResolver().query(alarmUri, projection, null, null,
 	            null);
-	        if (c != null)
-	        	alarm.id = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID)); 
+	        if (c != null) {
+	        	alarm.id = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID));
+	        	c.close();
+	        }
 	    } else {
 	        // Update todo
 	        getContentResolver().update(alarmUri, values, null, null);
