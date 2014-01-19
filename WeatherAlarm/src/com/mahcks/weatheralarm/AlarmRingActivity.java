@@ -28,7 +28,19 @@ public class AlarmRingActivity extends Activity {
 		setContentView(R.layout.alarm_alert);
 		self=this;
 		Calendar c = Calendar.getInstance();
-		this.time=((int)c.get(Calendar.HOUR_OF_DAY))+":"+((int)c.get(Calendar.MINUTE));
+		
+		String hours = ""+(int)c.get(Calendar.HOUR_OF_DAY);
+		String minutes = ""+(int)c.get(Calendar.MINUTE);
+		
+		if((int)c.get(Calendar.HOUR_OF_DAY)<=9){
+			hours = '0'+hours;
+		}
+		
+		if((int)c.get(Calendar.MINUTE)<=9){
+			minutes = '0'+minutes;
+		}
+		
+		this.time=hours+":"+minutes;
 		
 		WeatherData wd = WeatherGetter.getWeather();
 		this.description = wd.weather;
@@ -71,19 +83,19 @@ public class AlarmRingActivity extends Activity {
 		ImageView imgView = (ImageView)findViewById(R.id.weatherIcon);
 		textView = (TextView) findViewById(R.id.desc);
 		textView.setText(this.description);
-		if (description == wd.SNOW){
+		if (wd.type.equals(wd.SNOW)){
 			imgView.setImageResource(R.drawable.snow);
 		}
-		else if (description == wd.RAIN){
+		else if (wd.type.equals(wd.RAIN)){
 			imgView.setImageResource(R.drawable.rain);
 		}
-		else if (description == wd.CLOUDY){
+		else if (wd.type.equals(wd.CLOUDY)){
 			imgView.setImageResource(R.drawable.cloudy);
 		}
-		else if (description == wd.TSTORM){
+		else if (wd.type.equals(wd.TSTORM)){
 			imgView.setImageResource(R.drawable.storm);
 		}
-		else if (description == wd.CLEAR){
+		else if (wd.type.equals(wd.CLEAR)){
 			imgView.setImageResource(R.drawable.sunny);
 		}
 		

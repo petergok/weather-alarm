@@ -21,11 +21,12 @@ class Crescendo implements Runnable{
 	public void run(){
 		
 		mediaPlayer.setVolume(t*0.01f,t*0.01f);
-		t++;
-		if(t<100)handler.postDelayed(this,500);
-		else {
-			mediaPlayer.stop();
+		
+		if(t<100){
+			t++;
+			handler.postDelayed(this,500);
 		}
+		
 	}
 }
 
