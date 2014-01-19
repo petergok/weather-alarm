@@ -2,16 +2,18 @@ package com.mahcks.weatheralarm;
 
 import android.app.*;
 import android.content.*;
+import android.os.IBinder;
+
 import java.util.Calendar;
 
 
-public class AlarmScheduler {
+public class AlarmScheduler{
 
 	public static void setAlarm(Context context,Alarm alarm){
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
-		PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
 		int hour = Integer.valueOf(alarm.time.substring(0,2));
 		int min = Integer.valueOf(alarm.time.substring(3,5));
@@ -35,5 +37,13 @@ public class AlarmScheduler {
 		}
 		
 	}
+	
+	public static void removeAlarm(Context context,Alarm alarm){
+		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, AlarmReceiver.class);
+		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+		alarmMgr.cancel(alarmIntent);
+	}
+	
 	
 }

@@ -30,6 +30,13 @@
       		android:name=".contentprovider.MyAlarmContentProvider"
       		android:authorities="com.mahcks.weatheralarm.contentprovider" >
    		</provider>
+   		
+        <receiver android:name="AlarmReceiver" >
+            
+        </receiver>
+        
     </application>
+    
+    
 
 </manifest>

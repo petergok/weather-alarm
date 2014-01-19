@@ -293,6 +293,8 @@ public class AlarmEditActivity extends Activity {
     		alarm.time = "0" + alarm.time;
     	if (alarm.time.length() < 5)
     		alarm.time = alarm.time.substring(0, 3) + "0" + alarm.time.substring(3);
+    	
+    	AlarmScheduler.setAlarm(this, alarm);
 
 	    ContentValues values = new ContentValues();
 	    values.put(AlarmTable.COLUMN_NAME, alarm.name);
