@@ -173,7 +173,8 @@ public class WeatherAlarmOverview extends ListActivity
 								AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
 								AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
 								AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
-								AlarmTable.COLUMN_IS_ON};
+								AlarmTable.COLUMN_IS_ON, AlarmTable.COLUMN_EARLY_FOG,
+								AlarmTable.COLUMN_EARLY_RAIN, AlarmTable.COLUMN_EARLY_SNOW};
 	    CursorLoader cursorLoader = new CursorLoader(this,
 	        MyAlarmContentProvider.CONTENT_URI, projection, null, null, null);
 	    return cursorLoader;

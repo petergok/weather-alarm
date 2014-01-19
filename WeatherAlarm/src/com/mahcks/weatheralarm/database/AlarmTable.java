@@ -16,6 +16,9 @@ public class AlarmTable {
 	  public static final String COLUMN_IS_SNOOZE = "is_snooze";
 	  public static final String COLUMN_VOLUME = "volume";
 	  public static final String COLUMN_IS_ON = "is_on";
+	  public static final String COLUMN_EARLY_RAIN = "early_rain";
+	  public static final String COLUMN_EARLY_SNOW = "early_snow";
+	  public static final String COLUMN_EARLY_FOG = "easy_fog";
 
 	  // Database creation SQL statement
 	  private static final String DATABASE_CREATE = "create table " 
@@ -29,7 +32,10 @@ public class AlarmTable {
 	      + COLUMN_IS_CRES + " integer not null,"
 	      + COLUMN_IS_SNOOZE + " integer not null,"
 	      + COLUMN_VOLUME + " integer not null,"
-	      + COLUMN_IS_ON + " integer not null"
+	      + COLUMN_IS_ON + " integer not null,"
+	      + COLUMN_EARLY_RAIN + " integer not null,"
+	      + COLUMN_EARLY_SNOW + " integer not null,"
+	      + COLUMN_EARLY_FOG + " integer not null"
 	      + ");";
 
 	  public static void onCreate(SQLiteDatabase database) {
