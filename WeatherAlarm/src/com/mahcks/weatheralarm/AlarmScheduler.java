@@ -9,6 +9,16 @@ import java.util.Calendar;
 
 public class AlarmScheduler{
 
+	public static void setSnooze(Context context){
+		
+		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+		Intent intent = new Intent(context, AlarmReceiver.class);
+
+		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 3000*60+System.currentTimeMillis() , alarmIntent);
+		
+	}
+	
 	public static void setAlarm(Context context,Alarm alarm){
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
@@ -33,8 +43,14 @@ public class AlarmScheduler{
 				// setRepeating() lets you specify a precise custom interval--in this case,
 				// 20 minutes.
 				
-				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,alarm.id*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+				float time = calendar.getTimeInMillis();
+				
+				if(calendar.getTimeInMillis()-System.currentTimeMillis()<=0){
+					time += 1000 * 60 * 60 * 24 * 7;
+				}
+			
+				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) time,
 				        1000 * 60 * 60 * 24 * 7, alarmIntent);
 			}
 		}
@@ -45,7 +61,7 @@ public class AlarmScheduler{
 		for(int i=0;i<7;i++){
 			AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 			Intent intent = new Intent(context, AlarmReceiver.class);
-			PendingIntent alarmIntent = PendingIntent.getBroadcast(context,id*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+			PendingIntent alarmIntent = PendingIntent.getBroadcast(context,(id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 			alarmMgr.cancel(alarmIntent);
 		}
 	}
