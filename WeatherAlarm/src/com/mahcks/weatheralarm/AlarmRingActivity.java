@@ -66,7 +66,7 @@ public class AlarmRingActivity extends Activity {
 		
 		
 		TextView textView = (TextView) findViewById(R.id.temp);
-		textView.setText(this.temp+"�F");
+		textView.setText(this.temp+"F");
 		
 		ImageView imgView = (ImageView)findViewById(R.id.weatherIcon);
 		textView = (TextView) findViewById(R.id.desc);
