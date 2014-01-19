@@ -17,11 +17,8 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.os.StrictMode;
-=======
 import android.view.ActionMode;
->>>>>>> Master - fixed the selection within the list view
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

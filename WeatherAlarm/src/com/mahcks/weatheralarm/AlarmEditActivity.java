@@ -284,6 +284,8 @@ public class AlarmEditActivity extends Activity {
     
     private void saveAlarm() {
     	alarm.name = ((EditText) findViewById(R.id.autoCompleteTextView1)).getText().toString();
+    	if (alarm.name.equals(""))
+    		alarm.name = "Alarm";
     	alarm.time = ((TimePicker) findViewById(R.id.timePicker)).getCurrentHour().toString() + ":"
     				+ ((TimePicker) findViewById(R.id.timePicker)).getCurrentMinute().toString();
     	
