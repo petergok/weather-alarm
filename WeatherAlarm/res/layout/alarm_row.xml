@@ -7,12 +7,14 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="12dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:text="Alarm"
         android:textSize="26sp"
         android:textColor="@color/grayDarker" />
