@@ -9,6 +9,7 @@ public class Alarm {
 	public int isSnooze;
 	public int volume;
 	public int isOn;
+	public int id;
 	
 	public Alarm(){
 		name="";

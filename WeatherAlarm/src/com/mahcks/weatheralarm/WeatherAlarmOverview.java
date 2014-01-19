@@ -68,8 +68,6 @@ public class WeatherAlarmOverview extends ListActivity
 					}
 				}
 				else if (!createdAction) {
-					float x = event.getX();
-					float y = event.getY();
 					for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
 						mActivity.getListView().getChildAt(child).setBackground(getResources().getDrawable(R.drawable.alarm_list_background));
 					}
@@ -145,6 +143,7 @@ public class WeatherAlarmOverview extends ListActivity
 	            }
 	            checkedItemsPos.clear();
 	            checkedItems.clear();
+	            createdAction = false;
 	        }
 
 	        @Override
@@ -231,6 +230,7 @@ public class WeatherAlarmOverview extends ListActivity
 	    Intent i = new Intent(this, AlarmEditActivity.class);
 	    Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + id);
 	    i.putExtra(MyAlarmContentProvider.CONTENT_ITEM_TYPE, alarmUri);
+	    createdAction = false;
 
 	    startActivity(i);
 	  }

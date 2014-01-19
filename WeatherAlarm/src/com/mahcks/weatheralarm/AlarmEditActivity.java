@@ -232,6 +232,7 @@ public class AlarmEditActivity extends Activity {
           alarm.isSnooze = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_SNOOZE));
           alarm.volume = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_VOLUME));
           alarm.isOn = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_ON));
+          alarm.id = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID));
 
           // always close the cursor
           c.close();
@@ -309,10 +310,21 @@ public class AlarmEditActivity extends Activity {
 	    if (alarmUri == null) {
 	        // New todo
 	        alarmUri = getContentResolver().insert(MyAlarmContentProvider.CONTENT_URI, values);
+	        String[] projection = { AlarmTable.COLUMN_ID, AlarmTable.COLUMN_NAME, 
+					AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
+					AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
+					AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
+					AlarmTable.COLUMN_IS_ON};
+	        Cursor c = getContentResolver().query(alarmUri, projection, null, null,
+	            null);
+	        if (c != null)
+	        	alarm.id = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID)); 
 	    } else {
 	        // Update todo
 	        getContentResolver().update(alarmUri, values, null, null);
 	    }
+	    
+	    
 	}
     
 }
