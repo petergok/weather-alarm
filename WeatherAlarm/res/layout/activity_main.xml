@@ -21,7 +21,7 @@
         android:ems="10"
         android:hint="Alarm Name"
         android:singleLine="true"
-        android:background="@drawable/round_borders"
+        android:background="@drawable/rounded_edittext"
         android:alpha="0.6">
     </AutoCompleteTextView>
     
@@ -49,49 +49,56 @@
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="S"
-            android:textOff="S"/>
+            android:textOff="S"
+            android:textColor="@color/white"/>
         <ToggleButton
             android:id="@+id/toggleButton2"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="M"
-            android:textOff="M" />
+            android:textOff="M" 
+            android:textColor="@color/white"/>
         <ToggleButton
             android:id="@+id/toggleButton3"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="T"
-            android:textOff="T" />
+            android:textOff="T" 
+            android:textColor="@color/white"/>
         <ToggleButton
             android:id="@+id/toggleButton4"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="W"
-            android:textOff="W" />
+            android:textOff="W" 
+            android:textColor="@color/white"/>
         <ToggleButton
             android:id="@+id/toggleButton5"
             android:layout_width="0dp"
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="T"
-            android:textOff="T" />
+            android:textOff="T"
+            android:textColor="@color/white" />
         <ToggleButton
             android:id="@+id/toggleButton6"
             android:layout_width="0dp"
              android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="F"
-            android:textOff="F" />
+            android:textOff="F"
+            android:textColor="@color/white" />
         <ToggleButton
             android:id="@+id/toggleButton7"
             android:layout_width="0dp"
              android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="S"
-            android:textOff="S" />
+            android:textOff="S"
+            android:textColor="@color/white" />
         
     </LinearLayout>
 
