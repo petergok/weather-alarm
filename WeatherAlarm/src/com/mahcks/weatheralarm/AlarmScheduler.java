@@ -3,26 +3,27 @@ package com.mahcks.weatheralarm;
 import android.app.*;
 import android.content.*;
 import android.os.IBinder;
+import android.os.SystemClock;
 
 import java.util.Calendar;
 
 
 public class AlarmScheduler{
-
+	
 	public static void setSnooze(Context context){
-		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(context, AlarmReceiver.class);
+		Intent intent = new Intent(AlarmReceiver.ACTION);
 
-		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 3000*60+System.currentTimeMillis() , alarmIntent);
-		
+		PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+3*1000*60  , alarmIntent);
+
 	}
 	
-	public static void setAlarm(Context context,Alarm alarm){
+	public static void setAlarm(Context context, Alarm alarm){
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(context, AlarmReceiver.class);
+		Intent intent = new Intent(AlarmReceiver.ACTION);
 
 		int hour = Integer.valueOf(alarm.time.substring(0,2));
 		int min = Integer.valueOf(alarm.time.substring(3,5));
@@ -49,7 +50,7 @@ public class AlarmScheduler{
 					time += 1000 * 60 * 60 * 24 * 7;
 				}
 			
-				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+				PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(),(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) time,
 				        1000 * 60 * 60 * 24 * 7, alarmIntent);
 			}

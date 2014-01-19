@@ -31,7 +31,7 @@ class Crescendo implements Runnable{
 
 public class WeatherSound {
 	
-	public static int soundID;
+	public static MediaPlayer mp;
 
 	public static void playSound(Activity act, String sound, Boolean cres){
 		
@@ -46,7 +46,7 @@ public class WeatherSound {
         
         System.out.println("VOLUME:  "+audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
         
-        MediaPlayer mp = MediaPlayer.create(act, WeatherGetter.toRes(sound));
+        mp = MediaPlayer.create(act, WeatherGetter.toRes(sound));
         try {
         	if(cres)mp.setVolume(0f, 0f);
         	else mp.setVolume(1.00f, 1.00f);

@@ -51,7 +51,6 @@ public class AlarmAdapter extends CursorAdapter {
         String name = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_NAME));
         String time = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_TIME));
         String days = c.getString(c.getColumnIndexOrThrow(AlarmTable.COLUMN_DAYS));
-        int isOn = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_ON));
 
         /**
          * Next set the title of the entry.

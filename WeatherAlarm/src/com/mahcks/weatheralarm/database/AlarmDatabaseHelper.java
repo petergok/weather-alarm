@@ -8,7 +8,7 @@ import android.util.Log;
 public class AlarmDatabaseHelper extends SQLiteOpenHelper {
 
 		  private static final String DATABASE_NAME = "alarmstable.db";
-		  private static final int DATABASE_VERSION = 9;
+		  private static final int DATABASE_VERSION = 10;
 
 		  public AlarmDatabaseHelper(Context context) {
 		    super(context, DATABASE_NAME, null, DATABASE_VERSION);

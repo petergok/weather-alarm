@@ -10,6 +10,9 @@ public class Alarm {
 	public int volume;
 	public int isOn;
 	public int id;
+	public int earlySnow;
+	public int earlyRain;
+	public int earlyFog;
 	
 	public Alarm(){
 		name="";
@@ -20,5 +23,8 @@ public class Alarm {
 		isSnooze=1;
 		volume=5;	
 		isOn=1;
+		earlySnow = 0;
+		earlyRain = 0;
+		earlyFog = 0;
 	}
 }

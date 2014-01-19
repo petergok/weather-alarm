@@ -4,6 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"   
     tools:context=".AlarmEditActivity">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 <RelativeLayout 
     android:id = "@+id/everything"
     android:layout_width="match_parent"
@@ -203,6 +209,115 @@
             
         </TableRow>
     </TableLayout>
+</RelativeLayout>
+<RelativeLayout
+    android:id = "@+id/everything_else"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+        android:focusableInTouchMode="true"
+    android:background="@android:color/black" >
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/smartPicker"
+        android:stretchColumns="0">
+        <TableRow
+            android:id="@+id/early_fog"
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:text="Fog Time Shift"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_weight="4"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textColor = "@color/white"
+                android:layout_marginRight="20dp"
+                android:id="@+id/early_fog_text"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_number_input"
+                android:padding="5dp"
+                android:gravity="right"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:maxLength="2" />
+            
+        </TableRow>
+        <TableRow
+            android:id="@+id/early_rain"
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:text="Rain Time Shift"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_weight="4"
+                />
+
+            <EditText
+                android:layout_width="0dp"
+                android:id="@+id/early_rain_text"
+                android:layout_height="wrap_content"
+                android:textColor = "@color/white"
+                android:layout_marginRight="20dp"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_number_input"
+                android:padding="5dp" 
+                android:gravity="right"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:maxLength="2"/>
+            
+        </TableRow>
+        <TableRow
+            android:id="@+id/early_snow"
+            android:layout_width="match_parent"
+        	android:layout_height="40dp">
+
+            <TextView
+                android:text="Snow Time Shift"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:padding="10dp"
+                android:textColor="@color/white"
+                android:layout_weight="4"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:id="@+id/early_snow_text"
+                android:layout_height="wrap_content"
+                android:textColor = "@color/white"
+                android:layout_marginRight="20dp"
+                android:inputType="number"
+                android:background="@drawable/rounded_number_input"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:gravity="right"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:maxLength="2"/>
+            
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
+</LinearLayout>
 </ScrollView>

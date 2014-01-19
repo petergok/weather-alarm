@@ -9,19 +9,24 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.os.StrictMode;
 import android.view.MenuInflater;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.TimePicker;
@@ -35,6 +40,7 @@ public class AlarmEditActivity extends Activity {
 	public Alarm alarm;
 	public boolean saveAlarm;
 	public Uri alarmUri;
+	public AlarmEditActivity mActivity;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +59,7 @@ public class AlarmEditActivity extends Activity {
         
         saveAlarm = true;
     	alarm = new Alarm();
+    	mActivity = this;
     	
     	Bundle extras = getIntent().getExtras();
     	
@@ -207,6 +214,7 @@ public class AlarmEditActivity extends Activity {
                 } else {
                 	alarm.isSmart=0;
                 }
+                mActivity.turnOnSmart(isChecked);
             }
         });
         toggleSmart.setChecked(alarm.isSmart == 1);
@@ -237,6 +245,26 @@ public class AlarmEditActivity extends Activity {
 		});
         volumeControl.setProgress(alarm.volume);
         
+        turnOnSmart(alarm.isSmart == 1);
+        
+        ((EditText) findViewById(R.id.early_fog_text)).setText(String.valueOf(alarm.earlyFog));
+        ((EditText) findViewById(R.id.early_rain_text)).setText(String.valueOf(alarm.earlyRain));
+        ((EditText) findViewById(R.id.early_snow_text)).setText(String.valueOf(alarm.earlySnow));
+        	
+    }
+    
+    
+    
+    public void turnOnSmart (boolean isSmart) {
+    	if (isSmart) {
+        	((TableRow) findViewById(R.id.early_snow)).setVisibility(View.VISIBLE);
+        	((TableRow) findViewById(R.id.early_fog)).setVisibility(View.VISIBLE);
+        	((TableRow) findViewById(R.id.early_rain)).setVisibility(View.VISIBLE);
+        } else {
+        	((TableRow) findViewById(R.id.early_snow)).setVisibility(View.GONE);
+        	((TableRow) findViewById(R.id.early_fog)).setVisibility(View.GONE);
+        	((TableRow) findViewById(R.id.early_rain)).setVisibility(View.GONE);
+        }
     }
     
     private void fillData(Uri uri) {
@@ -244,7 +272,8 @@ public class AlarmEditActivity extends Activity {
 				AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
 				AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
 				AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
-				AlarmTable.COLUMN_IS_ON};
+				AlarmTable.COLUMN_EARLY_FOG, AlarmTable.COLUMN_EARLY_RAIN,
+				AlarmTable.COLUMN_EARLY_SNOW, AlarmTable.COLUMN_IS_ON};
         Cursor c = getContentResolver().query(uri, projection, null, null,
             null);
         if (c != null) {
@@ -257,6 +286,9 @@ public class AlarmEditActivity extends Activity {
           alarm.isSnooze = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_SNOOZE));
           alarm.volume = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_VOLUME));
           alarm.isOn = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_IS_ON));
+          alarm.earlyFog = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_EARLY_FOG));
+          alarm.earlyRain = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_EARLY_RAIN));
+          alarm.earlySnow = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_EARLY_SNOW));
           alarm.id = c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID));
 
           // always close the cursor
@@ -320,7 +352,17 @@ public class AlarmEditActivity extends Activity {
     	if (alarm.time.length() < 5)
     		alarm.time = alarm.time.substring(0, 3) + "0" + alarm.time.substring(3);
     	
+    	String editText = ((EditText) findViewById(R.id.early_fog_text)).getText().toString();
+    	if (!editText.equals(""))
+    		alarm.earlyFog = Integer.valueOf(editText);
     	
+    	editText = ((EditText) findViewById(R.id.early_rain_text)).getText().toString();
+    	if (!editText.equals(""))
+    		alarm.earlyRain = Integer.valueOf(editText);
+    	
+    	editText = ((EditText) findViewById(R.id.early_snow_text)).getText().toString();
+    	if (!editText.equals(""))
+    		alarm.earlySnow = Integer.valueOf(editText);
 
 	    ContentValues values = new ContentValues();
 	    values.put(AlarmTable.COLUMN_NAME, alarm.name);
@@ -330,6 +372,9 @@ public class AlarmEditActivity extends Activity {
 	    values.put(AlarmTable.COLUMN_IS_CRES, alarm.isCres);
 	    values.put(AlarmTable.COLUMN_IS_SNOOZE, alarm.isSnooze);
 	    values.put(AlarmTable.COLUMN_VOLUME, alarm.volume);
+	    values.put(AlarmTable.COLUMN_EARLY_FOG, alarm.earlyFog);
+	    values.put(AlarmTable.COLUMN_EARLY_RAIN, alarm.earlyRain);
+	    values.put(AlarmTable.COLUMN_EARLY_SNOW, alarm.earlySnow);
 	    values.put(AlarmTable.COLUMN_IS_ON, alarm.isOn);
 	    
 	    if (alarmUri == null) {
@@ -339,7 +384,8 @@ public class AlarmEditActivity extends Activity {
 					AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
 					AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
 					AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
-					AlarmTable.COLUMN_IS_ON};
+					AlarmTable.COLUMN_EARLY_FOG, AlarmTable.COLUMN_EARLY_RAIN,
+					AlarmTable.COLUMN_EARLY_SNOW, AlarmTable.COLUMN_IS_ON};
 	        Cursor c = getContentResolver().query(alarmUri, projection, null, null,
 	            null);
 	        if (c != null) {
