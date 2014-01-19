@@ -4,6 +4,6 @@
         android:id="@+id/create_new_alarm"
         android:showAsAction="always"
         android:title="Create New Alarm"
-        android:icon="@android:drawable/ic_input_add">
+        android:icon="@android:drawable/ic_menu_add">
     </item>
 </menu> 

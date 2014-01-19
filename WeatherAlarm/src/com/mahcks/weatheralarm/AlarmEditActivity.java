@@ -286,6 +286,11 @@ public class AlarmEditActivity extends Activity {
     	alarm.name = ((EditText) findViewById(R.id.autoCompleteTextView1)).getText().toString();
     	alarm.time = ((TimePicker) findViewById(R.id.timePicker)).getCurrentHour().toString() + ":"
     				+ ((TimePicker) findViewById(R.id.timePicker)).getCurrentMinute().toString();
+    	
+    	if (alarm.time.indexOf(":") != 2)
+    		alarm.time = "0" + alarm.time;
+    	if (alarm.time.length() < 5)
+    		alarm.time = alarm.time.substring(0, 3) + "0" + alarm.time.substring(3);
 
 	    ContentValues values = new ContentValues();
 	    values.put(AlarmTable.COLUMN_NAME, alarm.name);
