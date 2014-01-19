@@ -38,7 +38,7 @@ public class AlarmEditActivity extends Activity {
     			ThreadPolicy.Builder().permitAll().build();
     			StrictMode.setThreadPolicy(policy); 
     	
-    	WeatherGetter.getWeather();
+    	//WeatherGetter.getWeather();
     	
         super.onCreate(savedInstanceState);
         saveAlarm = true;
