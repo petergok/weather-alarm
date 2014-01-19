@@ -110,6 +110,13 @@
         android:textSize="36sp" >
 
     </TextView>
+    
+    <ImageView 
+        android:id ="@+id/weatherPreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        
+        />
 
     <ToggleButton
         android:id="@+id/toggleAlarm"
