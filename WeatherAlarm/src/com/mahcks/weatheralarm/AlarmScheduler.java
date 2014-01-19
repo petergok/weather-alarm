@@ -13,7 +13,6 @@ public class AlarmScheduler{
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
-		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
 		int hour = Integer.valueOf(alarm.time.substring(0,2));
 		int min = Integer.valueOf(alarm.time.substring(3,5));
@@ -33,6 +32,8 @@ public class AlarmScheduler{
 				System.out.println((calendar.getTimeInMillis()-System.currentTimeMillis())/1000.0f);
 				// setRepeating() lets you specify a precise custom interval--in this case,
 				// 20 minutes.
+				
+				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,alarm.id*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
 				        1000 * 60 * 60 * 24 * 7, alarmIntent);
 			}
@@ -40,11 +41,13 @@ public class AlarmScheduler{
 		
 	}
 	
-	public static void removeAlarm(Context context,Alarm alarm){
-		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-		Intent intent = new Intent(context, AlarmReceiver.class);
-		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-		alarmMgr.cancel(alarmIntent);
+	public static void removeAlarm(Context context,int id){
+		for(int i=0;i<7;i++){
+			AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+			Intent intent = new Intent(context, AlarmReceiver.class);
+			PendingIntent alarmIntent = PendingIntent.getBroadcast(context,id*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+			alarmMgr.cancel(alarmIntent);
+		}
 	}
 	
 	

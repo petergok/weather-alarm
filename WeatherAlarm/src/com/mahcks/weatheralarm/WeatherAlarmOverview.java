@@ -166,9 +166,27 @@ public class WeatherAlarmOverview extends ListActivity
 	}
 	
 	public void deleteSelectedItems() {
+		
+		String[] projection = { AlarmTable.COLUMN_ID, AlarmTable.COLUMN_NAME, 
+				AlarmTable.COLUMN_TIME, AlarmTable.COLUMN_DAYS,
+				AlarmTable.COLUMN_IS_SMART, AlarmTable.COLUMN_IS_CRES,
+				AlarmTable.COLUMN_IS_SNOOZE, AlarmTable.COLUMN_VOLUME,
+				AlarmTable.COLUMN_IS_ON};
+		
 		for (Long id : checkedItems) {
 			Uri alarmUri = Uri.parse(MyAlarmContentProvider.CONTENT_URI + "/" + id);
+			
+			Cursor c = getContentResolver().query(alarmUri, projection, null, null,
+		            null);
+			if(c!=null){
+				c.moveToFirst();
+				AlarmScheduler.removeAlarm(this,c.getInt(c.getColumnIndexOrThrow(AlarmTable.COLUMN_ID)));
+				c.close();
+			}
+			
 			getContentResolver().delete(alarmUri, AlarmTable.COLUMN_ID + "=?", new String[]{String.valueOf(id)});
+			
+	        
 		}
 		checkedItems.clear();
 		checkedItemsPos.clear();

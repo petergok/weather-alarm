@@ -1,6 +1,7 @@
 package com.mahcks.weatheralarm;
 
 import android.content.*;
+import android.os.Vibrator;
 import android.widget.Toast;
 
 public class AlarmReceiver extends BroadcastReceiver {
@@ -11,7 +12,10 @@ public class AlarmReceiver extends BroadcastReceiver {
 	    //Intent service = new Intent(context, WordService.class);
 	    //context.startService(service);
 		System.out.println("FUCK YOU");
-		Toast.makeText(context, "ALARM",500).show();
+		Toast.makeText(context, "ALARM",1500).show();
+		Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+		// Vibrate for 500 milliseconds
+		v.vibrate(500);
 	  }
 
 	
