@@ -57,14 +57,14 @@ public class WeatherAlarmOverview extends ListActivity
 			@SuppressLint("NewApi")
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
+				if (event.getActionMasked() == MotionEvent.ACTION_DOWN && mActivity.getListView().getChildCount() > 0) {
 					float x = event.getX();
-					float y = event.getY();
+					float y = event.getY() + 120;
 					for (int child = 0; child < mActivity.getListView().getChildCount(); child++) {
 						Rect r = new Rect();
 						mActivity.getListView().getChildAt(child).getGlobalVisibleRect(r);
 						if (r.contains((int)x, (int)y))
-								mActivity.getListView().getChildAt(Math.min(child + 1, mActivity.getListView().getChildCount())).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
+								mActivity.getListView().getChildAt(Math.min(child, mActivity.getListView().getChildCount())).setBackground(getResources().getDrawable(R.drawable.alarm_list_background_selected));
 					}
 				}
 				else if (!createdAction) {

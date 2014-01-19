@@ -21,4 +21,5 @@
     <color name="grayDarker">#7D7D7D</color>
     <color name="green">#4DFF52</color>
     <color name="white">#FFFFFF</color>
+    <color name="rectBackground">#FFFFFF</color>
 </resources>
