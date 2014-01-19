@@ -16,7 +16,7 @@ public class AlarmScheduler{
 
 		PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1*10*1000+System.currentTimeMillis() , alarmIntent);
+		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1000 , alarmIntent);
 
 		System.out.println("WTF");
 	}
@@ -51,7 +51,7 @@ public class AlarmScheduler{
 					//time += 1000 * 60 * 60 * 24 * 7;
 				}
 			
-				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+				PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(),(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
 				alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) time,
 				        1000 * 60 * 60 * 24 * 7, alarmIntent);
 			}
