@@ -16,10 +16,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
         android:ems="10"
         android:hint="Alarm Name"
-        android:singleLine="true">
+        android:singleLine="true"
+        android:background="@drawable/round_borders"
+        android:alpha="0.6">
     </AutoCompleteTextView>
     
     <TimePicker
@@ -45,7 +48,7 @@
             android:layout_weight="14"
             android:layout_height="wrap_content"
             android:textOn="S"
-            android:textOff="S" />
+            android:textOff="S"/>
         <ToggleButton
             android:id="@+id/toggleButton2"
             android:layout_width="0dp"
