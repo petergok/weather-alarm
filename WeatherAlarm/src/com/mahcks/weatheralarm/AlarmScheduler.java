@@ -8,18 +8,20 @@ import java.util.Calendar;
 
 
 public class AlarmScheduler{
-
+	static Context temp;
+	
 	public static void setSnooze(Context context){
-		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
 
-		PendingIntent alarmIntent = PendingIntent.getBroadcast(context,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 3000*60+System.currentTimeMillis() , alarmIntent);
-		
+		PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+		alarmMgr.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1*10*1000+System.currentTimeMillis() , alarmIntent);
+
+		System.out.println("WTF");
 	}
 	
-	public static void setAlarm(Context context,Alarm alarm){
+	public static void setAlarm(Context context, Alarm alarm){
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(context, AlarmReceiver.class);
@@ -46,7 +48,7 @@ public class AlarmScheduler{
 				float time = calendar.getTimeInMillis();
 				
 				if(calendar.getTimeInMillis()-System.currentTimeMillis()<=0){
-					time += 1000 * 60 * 60 * 24 * 7;
+					//time += 1000 * 60 * 60 * 24 * 7;
 				}
 			
 				PendingIntent alarmIntent = PendingIntent.getBroadcast(context,(alarm.id+1)*10+i,intent,PendingIntent.FLAG_UPDATE_CURRENT);

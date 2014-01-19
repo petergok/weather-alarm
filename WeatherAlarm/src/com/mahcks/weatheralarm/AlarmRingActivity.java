@@ -14,11 +14,12 @@ public class AlarmRingActivity extends Activity {
 	String description;
 	int temp;
 	String time;
-	
+
+	AlarmRingActivity self;
 	public void onCreate (Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.alarm_alert);
-		
+		self=this;
 		Calendar c = Calendar.getInstance();
 		this.time=((int)c.get(Calendar.HOUR_OF_DAY))+":"+((int)c.get(Calendar.MINUTE));
 		
@@ -32,7 +33,10 @@ public class AlarmRingActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				System.out.println("wat");
+
+				WeatherSound.mp.stop();
+				finish();
+				return;
 			}
 			
 		});
@@ -43,14 +47,18 @@ public class AlarmRingActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				AlarmScheduler.setSnooze(AlarmRingActivity.this.getApplicationContext());
+				
+				AlarmScheduler.setSnooze(self);
+				WeatherSound.mp.stop();
+				finish();
+				return;
 			}
 			
 		});
 		
 		
 		TextView textView = (TextView) findViewById(R.id.temp);
-		textView.setText(this.temp);
+		textView.setText(this.temp+"°F");
 		
 		ImageView imgView = (ImageView)findViewById(R.id.weatherIcon);
 		textView = (TextView) findViewById(R.id.desc);
