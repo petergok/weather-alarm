@@ -45,6 +45,7 @@ public class AlarmRingActivity extends Activity {
 		WeatherData wd = WeatherGetter.getWeather();
 		this.description = wd.weather;
 		this.temp = (int)wd.temp_f;
+	
 		
 		Button stopButton = (Button) findViewById(R.id.stopButton);
 		stopButton.setOnClickListener(new Button.OnClickListener(){
@@ -53,7 +54,7 @@ public class AlarmRingActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				WeatherSound.mp.stop();
+				WeatherSound.stopSound();
 				finish();
 				return;
 			}
@@ -68,7 +69,7 @@ public class AlarmRingActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				AlarmScheduler.setSnooze(self);
-				WeatherSound.mp.stop();
+				WeatherSound.stopSound();
 				///moveTaskToBack(true);
 				finish();
 				return;
@@ -103,7 +104,7 @@ public class AlarmRingActivity extends Activity {
 		textView.setText(this.time);
 		
 
-		WeatherSound.playSound(this, wd.type, true);
+		WeatherSound.playSound(this, wd.type, getIntent().getExtras().getInt("isCres")==1);
 	}
 	
 }

@@ -11,7 +11,7 @@ class Crescendo implements Runnable{
 	
 	public MediaPlayer mediaPlayer;
 	public Handler handler;
-	public int t = 0;
+	public static int t = 0;
 	Crescendo(MediaPlayer mp,Handler handler){
 		mediaPlayer = mp;
 		this.handler = handler;
@@ -33,6 +33,11 @@ class Crescendo implements Runnable{
 public class WeatherSound {
 	
 	public static MediaPlayer mp;
+	
+	public static void stopSound(){
+		mp.stop();
+		Crescendo.t = 0;
+	}
 
 	public static void playSound(Activity act, String sound, Boolean cres){
 		

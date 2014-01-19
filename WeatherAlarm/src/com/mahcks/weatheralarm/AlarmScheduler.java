@@ -24,6 +24,7 @@ public class AlarmScheduler{
 		
 		AlarmManager alarmMgr = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
 		Intent intent = new Intent(AlarmReceiver.ACTION);
+		intent.putExtra("isCres", alarm.isCres);
 
 		int hour = Integer.valueOf(alarm.time.substring(0,2));
 		int min = Integer.valueOf(alarm.time.substring(3,5));
@@ -64,6 +65,7 @@ public class AlarmScheduler{
 			calendar.set(Calendar.MINUTE, min);
 			
 			PendingIntent alarmIntent = PendingIntent.getBroadcast(context.getApplicationContext(),(alarm.id+1)*10,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+			
 			alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, (long) calendar.getTimeInMillis(),
 			        1000 * 60 * 60 * 24 * 7, alarmIntent);
 		}

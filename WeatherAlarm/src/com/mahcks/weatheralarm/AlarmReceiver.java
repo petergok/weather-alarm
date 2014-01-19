@@ -14,8 +14,9 @@ public class AlarmReceiver extends BroadcastReceiver {
 		
 		Intent alarm = new Intent(context,AlarmRingActivity.class);
 		alarm.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		alarm.putExtra("isCres", intent.getExtras().getInt("isCres"));
 	    context.startActivity(alarm);
-		System.out.println("FUCK YOU");
+	    
 	  }
 
 	
