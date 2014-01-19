@@ -7,7 +7,7 @@
 <RelativeLayout 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/background"  >
+    android:background="@drawable/background" >
 
 
     <AutoCompleteTextView
@@ -21,7 +21,9 @@
         android:ems="10"
         android:hint="Alarm Name"
         android:singleLine="true"
-        android:background="@drawable/rounded_edittext">
+        android:background="@drawable/rounded_edittext"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
     </AutoCompleteTextView>
     
     <TimePicker

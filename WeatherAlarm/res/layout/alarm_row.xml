@@ -2,98 +2,94 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:background="@drawable/alarm_list_background">
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:gravity="center_vertical"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
         android:text="Alarm"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textColor="@color/grayDarker" />
+    
+    
     <!-- DAYS OF THE WEEK -->
     <TextView
         android:id="@+id/daysS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/name"
-        android:gravity="center_vertical"
-        android:layout_marginLeft="14dp"
+        android:layout_below="@+id/name"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="6dp"
         android:text="S"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker"/>
     <TextView
         android:id="@+id/daysM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysS"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysS"
         android:layout_marginLeft="2dp"
         android:text="M"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
     <TextView
         android:id="@+id/daysT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysM"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysM"
         android:layout_marginLeft="2dp"
         android:text="T"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
     <TextView
         android:id="@+id/daysW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysT"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysT"
         android:layout_marginLeft="2dp"
         android:text="W"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
     <TextView
         android:id="@+id/daysTh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysW"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysW"
         android:layout_marginLeft="2dp"
         android:text="T"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
     <TextView
         android:id="@+id/daysF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysTh"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysTh"
         android:layout_marginLeft="2dp"
         android:text="F"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
     <TextView
         android:id="@+id/daysSa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/daysF"
-        android:gravity="center_vertical"
+        android:layout_alignTop="@+id/daysF"
         android:layout_marginLeft="2dp"
         android:text="S"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/grayDarker" />
+    
     
     
     
@@ -102,25 +98,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/alarmStatus"
-        
+        android:layout_toLeftOf="@+id/toggleAlarm"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="15dp"
         android:lines="1"
         android:text="00:00"
-        android:textSize="26dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="10dp"
-        
-        android:textColor="@color/grayDarker">
+        android:textColor="@color/grayDarker"
+        android:textSize="36sp" >
+
     </TextView>
 
-    <ImageView
-        android:id="@+id/alarmStatus"
-        android:layout_width="30dp"
-        android:layout_height="24dp"
+    <ToggleButton
+        android:id="@+id/toggleAlarm"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:src="@android:drawable/ic_lock_idle_alarm" />
+        android:layout_marginRight="5dp"
+        android:text="ToggleButton" />
 
 </RelativeLayout>
