@@ -41,6 +41,9 @@ public class AlarmEditActivity extends Activity {
     	//WeatherGetter.getWeather();
     	
         super.onCreate(savedInstanceState);
+        
+        getActionBar().setTitle("Save alarm"); 
+        
         saveAlarm = true;
     	alarm = new Alarm();
     	
@@ -59,7 +62,6 @@ public class AlarmEditActivity extends Activity {
         }
     	
         setContentView(R.layout.activity_main);
-        getActionBar().setDisplayShowTitleEnabled(false);
         
         ((EditText) findViewById(R.id.autoCompleteTextView1)).setText(alarm.name);
         ((TimePicker) findViewById(R.id.timePicker)).setCurrentHour(Integer.valueOf(alarm.time.substring(0, 2)));

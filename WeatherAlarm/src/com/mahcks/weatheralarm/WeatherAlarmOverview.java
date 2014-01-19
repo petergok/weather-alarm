@@ -50,6 +50,9 @@ public class WeatherAlarmOverview extends ListActivity
 		super.onCreate(savedInstanceState);
 		
 	    setContentView(R.layout.alarm_list);
+	    
+	    getActionBar().setTitle("Create alarm"); 
+	    
 	    this.getListView().setDividerHeight(2);
 	    
 	    this.getListView().setOnTouchListener(new OnTouchListener() {
@@ -160,10 +163,6 @@ public class WeatherAlarmOverview extends ListActivity
 	    StrictMode.ThreadPolicy policy = new StrictMode.
 	    		ThreadPolicy.Builder().permitAll().build();
 	    		StrictMode.setThreadPolicy(policy); 
-	    
-	    
-	    
-	    getActionBar().setDisplayShowTitleEnabled(false);
 	}
 	
 	public void deleteSelectedItems() {
