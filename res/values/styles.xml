@@ -1,0 +1,28 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.Holo">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <color name="gray">#EAEAEA</color>
+    <color name="grayDarker">#7D7D7D</color>
+    <color name="green">#4DFF52</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="rectBackgroundEdittext">#8036FFF5</color>
+    <color name="rectBackgroundTimepicker">#4036FFF5</color>
+    
+</resources>
